@@ -9,7 +9,7 @@ export default function ({title, targetTime}) {
 
     function handleStart() {
         timer.current = setTimeout(() => {
-            dialog.current.showModal();
+            dialog.current.open();
         }, targetTime * 1000);
         setTimerStarted(true);
     }
