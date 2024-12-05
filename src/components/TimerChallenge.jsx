@@ -13,7 +13,7 @@ export default function ({title, targetTime}) {
         dialog.current.open();
     }
 
-    function handleReset(){
+    function handleReset() {
         setTimeRemaining(targetTimeInMillis);
     }
 
