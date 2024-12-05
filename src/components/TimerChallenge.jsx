@@ -3,18 +3,18 @@ import ResultModal from "./ResultModal.jsx";
 
 export default function ({title, targetTime}) {
     const targetTimeInMillis = targetTime * 1000;
-
     const timer = useRef();
     const dialog = useRef();
-
     const [timeRemaining, setTimeRemaining] = useState(targetTimeInMillis);
-
     const isTimerActive = timeRemaining > 0 && timeRemaining < targetTimeInMillis;
 
     if (timeRemaining <= 0) {
         clearInterval(timer.current);
-        setTimeRemaining(targetTimeInMillis);
         dialog.current.open();
+    }
+
+    function handleReset(){
+        setTimeRemaining(targetTimeInMillis);
     }
 
     function handleStart() {
@@ -30,7 +30,7 @@ export default function ({title, targetTime}) {
 
     return (
         <>
-            <ResultModal ref={dialog} targetTime={targetTime} result="lost"/>
+            <ResultModal ref={dialog} targetTime={targetTime} remainingTime={timeRemaining} onReset={handleReset}/>
             <section className="challenge">
                 <h2>{title}</h2>
                 <p className="challenge-time">
